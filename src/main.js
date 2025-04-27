@@ -1,4 +1,4 @@
-import { fetchImages } from './pixabay';
+import { fetchImages } from './js/pixabay-api';
 // Dokümantasyonda belirtilen import
 import iziToast from "izitoast";
 // Stil importu
