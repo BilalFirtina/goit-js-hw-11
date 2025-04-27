@@ -23,6 +23,14 @@ form.addEventListener("submit", (e) => {
     images.then((resolve) => {
         createGallery(resolve.data.hits)
         deleteLoader();
+        if (resolve.data.hits.length <= 0) {
+            iziToast.error({
+              title: 'Error',
+              message:
+                'Sorry, there are no images matching your search query. Please try again!',
+              position: 'topRight',
+            });
+        }
     })
 })
 
