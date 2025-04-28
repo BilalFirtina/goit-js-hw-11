@@ -8,31 +8,31 @@ let lightbox = new SimpleLightbox('.image-li a', {
 });
 
 export function createGallery(images) {
-  const appendHtml = images.map((element) => {
+  const appendHtml = images.map(({largeImageURL,webformatURL,tags,likes,views,comments,downloads}) => {
       return `<li class="image-li">
-           <a href="${element.largeImageURL}"> <img class="li-img" src="${
-        element.webformatURL
-      }" alt="${element.tags.split(',').slice(0, 3).join(',')}"> </a>
+           <a href="${largeImageURL}"> <img class="li-img" src="${
+        webformatURL
+      }" alt="${tags.split(',').slice(0, 3).join(',')}"> </a>
           <div class="div-upper">
             <ul>
             <li>
               <div class="div-inner"><b>Likes</b>
-            ${element.likes}</div>
+            ${likes}</div>
             </li>
 
             <li>
              <div class="div-inner"><b>Views</b>
-            ${element.views}</div>
+            ${views}</div>
             </li>
 
             <li>
               <div class="div-inner"><b>Comments</b>
-            ${element.comments}</div>
+            ${comments}</div>
             </li>
 
             <li>
              <div class="div-inner"><b>Downloads</b>
-            ${element.downloads}</div>
+            ${downloads}</div>
             </li>
 
             </ul>
