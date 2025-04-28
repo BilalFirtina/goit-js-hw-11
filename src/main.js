@@ -12,15 +12,17 @@ form.addEventListener("submit", (e) => {
     const enteredValue = input.value.trim();
     clearGallery();
     showLoader();
-    if (!enteredValue) {
-        iziToast.error({
+  if (!enteredValue) {
+    deleteLoader();
+      return iziToast.error({
           title: 'Error',
             message: 'Please enter a search term.',
           position:"topRight"
         });
     }
     const images = fetchImages(enteredValue);
-    images.then((resolve) => {
+  images.then((resolve) => {
+      console.log(resolve)
         createGallery(resolve.data.hits)
         deleteLoader();
         if (resolve.data.hits.length <= 0) {
@@ -30,7 +32,15 @@ form.addEventListener("submit", (e) => {
                 'Sorry, there are no images matching your search query. Please try again!',
               position: 'topRight',
             });
-        }
+      }
+      form.reset();
     })
+      .catch((err) => {
+        iziToast.error({
+          title: "Error",
+          message: err.message,
+          position: "topRight"
+        })
+  })
 })
 

@@ -11,8 +11,8 @@ export function createGallery(images) {
   const appendHtml = images.map((element) => {
       return `<li class="image-li">
            <a href="${element.largeImageURL}"> <img class="li-img" src="${
-  element.previewURL
-}" alt="${element.tags.split(',').slice(0, 3).join(',')}"> </a>
+        element.webformatURL
+      }" alt="${element.tags.split(',').slice(0, 3).join(',')}"> </a>
           <div class="div-upper">
             <ul>
             <li>
@@ -39,7 +39,7 @@ export function createGallery(images) {
           </div>
         </li>`;
     }).join("");
-    ul.innerHTML = appendHtml;
+  ul.insertAdjacentHTML("beforeend", appendHtml);
     lightbox.refresh();
 }
 
