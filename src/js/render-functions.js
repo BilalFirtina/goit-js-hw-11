@@ -48,9 +48,9 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-document.querySelector('.hidden').classList.remove("ghost");
+document.querySelector('.hidden').style.display = "flex";
 }
 
-export function deleteLoader() {
-    document.querySelector(".hidden").classList.add("ghost")
+export function hideLoader() {
+  document.querySelector(".hidden").style.display = "none";
 }

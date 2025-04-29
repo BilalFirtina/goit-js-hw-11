@@ -1,5 +1,5 @@
 import { fetchImages } from './js/pixabay-api';
-import { createGallery,clearGallery,showLoader,deleteLoader } from './js/render-functions';
+import {createGallery,clearGallery,showLoader,hideLoader} from './js/render-functions';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
@@ -13,18 +13,17 @@ form.addEventListener("submit", (e) => {
     clearGallery();
     showLoader();
   if (!enteredValue) {
-    deleteLoader();
+    hideLoader();
       return iziToast.error({
           title: 'Error',
             message: 'Please enter a search term.',
           position:"topRight"
         });
     }
-    const images = fetchImages(enteredValue);
-  images.then((resolve) => {
-      console.log(resolve)
-        createGallery(resolve.data.hits)
-        deleteLoader();
+    fetchImages(enteredValue)
+    .then((resolve) => {
+      createGallery(resolve.data.hits);
+        hideLoader();
         if (resolve.data.hits.length <= 0) {
             iziToast.error({
               title: 'Error',
