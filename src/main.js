@@ -21,18 +21,18 @@ form.addEventListener("submit", (e) => {
         });
     }
     fetchImages(enteredValue)
-    .then((resolve) => {
+      .then((resolve) => {
+      if (resolve.data.hits.length <= 0) {
+        iziToast.error({
+          title: 'Error',
+          message:
+            'Sorry, there are no images matching your search query. Please try again!',
+          position: 'topRight',
+        });
+      }
       createGallery(resolve.data.hits);
         hideLoader();
-        if (resolve.data.hits.length <= 0) {
-            iziToast.error({
-              title: 'Error',
-              message:
-                'Sorry, there are no images matching your search query. Please try again!',
-              position: 'topRight',
-            });
-      }
-      form.reset();
+        form.reset();
     })
       .catch((err) => {
         iziToast.error({
