@@ -30,6 +30,7 @@ form.addEventListener("submit", (e) => {
             'Sorry, there are no images matching your search query. Please try again!',
           position: 'topRight',
         });
+          form.reset();
           return;
       }
       createGallery(resolve.data.hits);
