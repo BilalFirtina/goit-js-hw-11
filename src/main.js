@@ -22,7 +22,8 @@ form.addEventListener("submit", (e) => {
     }
     fetchImages(enteredValue)
       .then((resolve) => {
-      if (resolve.data.hits.length <= 0) {
+        if (resolve.data.hits.length <= 0) {
+        hideLoader();
         return iziToast.error({
           title: 'Error',
           message:
