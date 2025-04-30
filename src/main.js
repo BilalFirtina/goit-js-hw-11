@@ -24,12 +24,13 @@ form.addEventListener("submit", (e) => {
       .then((resolve) => {
         if (resolve.data.hits.length <= 0) {
         hideLoader();
-        return iziToast.error({
+        iziToast.error({
           title: 'Error',
           message:
             'Sorry, there are no images matching your search query. Please try again!',
           position: 'topRight',
         });
+          return;
       }
       createGallery(resolve.data.hits);
         hideLoader();
